@@ -9,7 +9,7 @@ const TaskItem = (props) => {
 
     return (
         <div className={classes['todo-item']}>
-            <div key={props.id}>{props.children}</div>
+            <div>{props.children}</div>
             <button className={classes['todo-remove-btn']} onClick={() => onDeleteButtonClick(props.id)}>Delete</button>
         </div>
     );

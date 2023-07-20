@@ -3,16 +3,8 @@ import TaskList from './components/TaskList';
 import InputBar from './components/InputBar';
 import { useState } from 'react';
 
-const DUMMY_VALUES = [
-    { id: '1', name: 'test1' },
-    { id: '2', name: 'test2' },
-    { id: '3', name: 'test3' },
-    { id: '4', name: 'test4' },
-    { id: '5', name: 'test5' },
-];
-
 function App() {
-    const [todoItemList, setTodoItemList] = useState(DUMMY_VALUES);
+    const [todoItemList, setTodoItemList] = useState([]);
 
     const todoItemsAddHandler = (todoItem) => {
         setTodoItemList([...todoItemList, todoItem]);
