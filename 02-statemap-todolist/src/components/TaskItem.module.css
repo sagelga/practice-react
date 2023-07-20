@@ -1,0 +1,26 @@
+/* Styles for each task item */
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    margin-bottom: 5px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Styles for the "Remove" button */
+.todo-remove-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 8px 12px;
+}
+
+/* Hover styles for the "Remove" button */
+.todo-remove-btn:hover {
+    background-color: #c82333;
+}
