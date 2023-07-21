@@ -36,3 +36,13 @@
         transform: rotate(360deg);
     }
 }
+
+.timer-container {
+    margin-top: 20px;
+    /*font-size: 24px;*/
+    /*font-weight: bold;*/
+    text-align: center;
+    border: 2px solid #acacac;
+    border-radius: 10px; /* Add curved borders */
+    padding: 10px;
+}
