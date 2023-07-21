@@ -147,14 +147,15 @@ clicks a "Start" button and stop when they click a "Stop" button.
 5. Create another event handler function, e.g., `stopTimer`, to stop the countdown by using `clearInterval` with the
    interval ID from the `useRef`.
 6. Bind the `startTimer` function to the "Start" button's `onClick` event and the `stopTimer` function to the "Stop"
-   button's
-   Challenge 5: Quiz Application
+   button
 
-Description:
+**Challenge 5: Quiz Application**
+
+**Description:**
 Build a small quiz application where the user can select answers to questions, and their score is calculated based on
 correct answers.
 
-Acceptance Criteria:
+**Acceptance Criteria:**
 
 There should be a list of multiple-choice questions displayed on the screen, along with their possible answers.
 The user should be able to select one answer for each question.
@@ -164,24 +165,28 @@ The user should not be able to change their answer once it is selected.
 After answering all questions, the user should click the "Submit" button.
 The application should calculate the score by checking the correct answers.
 The user's score should be displayed on the screen along with appropriate feedback (e.g., "You scored 4 out of 5").
-Hints:
 
-Use useState to manage the user's selected answers and the quiz score.
-Use an array of objects to store the questions, their possible answers, and the correct answer.
-Use map to render the list of questions and their answer options.
-Beginning Guidelines:
+**Hints:**
 
-Set up the basic structure of the component with state variables for the user's selected answers and the quiz score.
-Create an array of objects, each representing a question with its possible answers and the correct answer.
-Use useState to create a state variable, e.g., userAnswers, to store the user's selected answers (initialize it with an
-empty array).
-Use useState to create a state variable, e.g., score, to store the user's quiz score (initialize it to 0).
-Render the list of questions and their answer options using map.
-Create an event handler function, e.g., handleAnswerSelect, to update the userAnswers state when the user selects an
-answer.
-Bind the handleAnswerSelect function to the onClick event of the answer options.
-Implement a function, e.g., calculateScore, to calculate the user's score based on their selected answers and the
-correct answers.
-Display the user's score and appropriate feedback after they click the "Submit" button.
+* Use useState to manage the user's selected answers and the quiz score.
+* Use an array of objects to store the questions, their possible answers, and the correct answer.
+* Use map to render the list of questions and their answer options.
+
+**Beginning Guidelines:**
+
+1. Set up the basic structure of the component with state variables for the user's selected answers and the quiz score.
+2. Create an array of objects, each representing a question with its possible answers and the correct answer.
+3. Use useState to create a state variable, e.g., userAnswers, to store the user's selected answers (initialize it with
+   an
+4. empty array).
+5. Use useState to create a state variable, e.g., score, to store the user's quiz score (initialize it to 0).
+6. Render the list of questions and their answer options using map.
+7. Create an event handler function, e.g., handleAnswerSelect, to update the userAnswers state when the user selects an
+8. answer.
+9. Bind the handleAnswerSelect function to the onClick event of the answer options.
+10. Implement a function, e.g., calculateScore, to calculate the user's score based on their selected answers and the
+11. correct answers.
+12. Display the user's score and appropriate feedback after they click the "Submit" button.
+
 Feel free to combine these guidelines with the provided acceptance criteria, hints, and descriptions to tackle each
 challenge one by one. Happy coding!
