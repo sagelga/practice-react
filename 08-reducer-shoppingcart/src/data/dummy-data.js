@@ -1,29 +1,20 @@
-import { v4 as uuidv4 } from 'uuid';
 import { faker } from '@faker-js/faker';
 
 const dummyGenerator = () => {
-    let dummyItem = [];
-
-    for (let i = 0; i < 10; i++) {
-        let randomId = uuidv4();
-        let randomName = faker.commerce.productName();
-        let randomDescription = faker.commerce.productDescription();
-        let randomPrice = faker.commerce.price();
-        let randomAmount = Math.floor(Math.random() * 100);
-        let randomImgUrl = faker.image.urlLoremFlickr({ width: 150, height: 150, category: 'food' });
-
-        let newDummyItem = {
-            id: randomId,
-            name: randomName,
-            description: randomDescription,
-            price: randomPrice,
-            amount: randomAmount,
-            imgUrl: randomImgUrl,
-        };
-
-        dummyItem.push(newDummyItem);
-    }
-    return dummyItem;
+    return {
+        id: faker.string.uuid(),
+        name: faker.commerce.productName(),
+        description: faker.commerce.productDescription(),
+        price: faker.commerce.price(),
+        priceCurrency: faker.finance.currency().code,
+        amount: faker.helpers.rangeToNumber({ min: 0, max: 99 }),
+        img: {
+            url: faker.image.urlLoremFlickr({ width: 150, height: 150 }),
+            alt: 'Faker random image',
+        },
+    };
 };
 
-export default dummyGenerator;
+export const DUMMY_INVENTORY = faker.helpers.multiple(
+    dummyGenerator,
+    { count: 12 });
