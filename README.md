@@ -341,6 +341,25 @@ closed.
 Create a shopping cart using the `useReducer` hook to manage the state. Users can add items, remove items, and update
 quantities.
 
+In this system, a well-designed and user-friendly display page will be provided, showcasing a variety of available
+stocks. Each item will be presented with its name (title), a detailed description, and its price for easy reference.
+
+To initiate the shopping process, the user will have the option to interact with an input bar, where they can manually
+type in the desired quantity of the item they wish to purchase. Alternatively, the user can conveniently use the '+'
+and '-' buttons to increment or decrement the quantity, respectively. However, to proceed with the purchase, the minimum
+allowed quantity must be set to 1; this ensures that users cannot add an item with zero or negative quantities to their
+shopping cart.
+
+The shopping cart functionality will be easily accessible through a dedicated cart button in the navigation bar. Upon
+clicking this button, a modal will appear, providing a clear overview of the items currently added to the cart. Users
+will have the ability to adjust the quantity of each item in the cart, granting them the flexibility to make changes
+according to their preferences.
+
+As the user modifies the quantity of each item, the system will automatically calculate the subtotal for each product by
+multiplying the quantity in the cart by the respective item's price. Furthermore, the system will effortlessly tally up
+the grand total by summing the subtotals of all the items present in the cart. This feature ensures that users can
+easily keep track of their expenses and make informed decisions while shopping.
+
 **Acceptance Criteria:**
 
 1. Users can add items to the cart with a specified quantity.
