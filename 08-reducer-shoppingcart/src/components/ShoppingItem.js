@@ -20,7 +20,7 @@ const ShoppingItem = (props) => {
             </p>
         </div>
         <div>
-            <ShoppingItemQuantityControl className={classes['item-controls']} itemMin={0} itemMax={amount} />
+            <ShoppingItemQuantityControl itemMin={0} itemMax={amount} />
         </div>
     </div>;
 };

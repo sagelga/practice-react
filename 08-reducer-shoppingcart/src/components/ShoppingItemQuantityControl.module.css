@@ -1,3 +1,7 @@
+.item-controls {
+    align-items: center;
+}
+
 input.quantity {
     width: 50px;
     text-align: center;
