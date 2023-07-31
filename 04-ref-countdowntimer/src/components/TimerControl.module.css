@@ -1,0 +1,26 @@
+/* Basic button styles */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin: 5px;
+}
+
+/* Style for the "Start" button */
+.start {
+    background-color: #28a745;
+}
+
+.pause {
+    background-color: #fff; /* lighter shade of green */
+    border: 1px solid #28a745; /* original green color */
+    color: #28a745; /* Text color */
+}
+
+/* Style for the "Stop" button */
+.stop {
+    background-color: #dc3545;
+}

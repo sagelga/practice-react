@@ -1,0 +1,10 @@
+.checkout {
+    position: relative;
+    border-radius: 10px;
+    background-color: lightgreen;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
