@@ -1,0 +1,31 @@
+/* Cart button in the navigation bar */
+.cart-button {
+    position: relative;
+    border-radius: 10px; /* Make the button round */
+    background-color: lightgreen; /* Set the button color to blue */
+    width: 80px; /* Adjust the width to desired size */
+    height: 40px; /* Adjust the height to desired size */
+    display: flex; /* To center the icon and badge */
+    justify-content: center; /* To center the icon and badge */
+    align-items: center; /* To center the icon and badge */
+}
+
+.cart-icon {
+    /* font-size: 24px; */
+    color: #fff; /* Set the icon color to white to contrast with the blue button */
+}
+
+.cart-text {
+    color: #fff;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 12px;
+    padding: 2px 8px; /* Adjust the padding to your desired size */
+    border-radius: 15px; /* Make the badge pill-shaped */
+}

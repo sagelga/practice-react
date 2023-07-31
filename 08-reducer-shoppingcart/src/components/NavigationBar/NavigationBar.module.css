@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navigation bar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkorange;
+    padding: 10px;
+}
+
+.leftControl {
+    display: flex;
+    align-items: center;
+}
+
+/* Website logo */
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    /* To remove any default inline spacing */
+    width: 40px;
+    /* Set your preferred logo width */
+    height: 40px;
+    /* Set your preferred logo height */
+    margin-right: 10px;
+    /* Add some spacing between logo and title */
+}
+
+/* Website title */
+.title {
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+
+    /* Hide the title on small screens */
+    @media (max-width: 600px) {
+        display: none;
+    }
+}
+
+/* Checkout button */
+.checkout-btn {
+    background-color: #f39c12;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Align the checkout button to the right */
+.navbar .checkout-btn {
+    margin-left: auto;
+}
