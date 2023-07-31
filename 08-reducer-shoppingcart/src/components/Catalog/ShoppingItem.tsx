@@ -37,16 +37,19 @@ const ShoppingItem = (props: IShoppingItemProps) => {
             selectedAmount: amount,
         };
         cartCtx.addItem(selectedItem);
-        console.log(selectedItem);
     };
 
     return (
-        <div className={classes['cart-item']} key={id}>
+        <div
+            className={`${classes['cart-item']} ${classes['shopping-item-card']}`}
+            key={id}
+        >
             <ShoppingItemDisplay productItem={props.productItem} />
             <ShoppingItemControl
                 itemMin={1}
                 itemMax={stockAmount}
                 itemSubmit={addToCartHandler}
+                className={classes['shopping-item-control']} // Add a className prop to ShoppingItemControl
             />
         </div>
     );

@@ -1,5 +1,4 @@
 import { ICheckoutItem } from '../interface/ICheckoutItem';
-import { IShoppingItem } from '../interface/IShoppingItem';
 import { DUMMY_INVENTORY } from '../data/dummy-data';
 
 interface IAction {
@@ -38,39 +37,94 @@ export const ACTIONS = {
     DELETE_CART: 'DELETE_CART',
 };
 
-export const checkoutItemReducer = (state: IState, action: IAction) => {
-    const retrieveInformation = (
-        id: string,
-        selectedAmount: number
-    ): ICheckoutItem => {
-        let resultValue =
-            DUMMY_INVENTORY.find((item) => item.id === id) || invalidSearch;
+const retrieveInformation = (
+    id: string,
+    selectedAmount: number
+): ICheckoutItem => {
+    let resultValue =
+        DUMMY_INVENTORY.find((item) => item.id === id) || invalidSearch;
 
-        return {
-            ...resultValue,
-            selectedAmount: selectedAmount,
-        };
+    return {
+        ...resultValue,
+        selectedAmount: selectedAmount,
     };
+};
+
+export const checkoutItemReducer = (state: IState, action: IAction) => {
+    const targetItem = retrieveInformation(
+        action.payload.id,
+        action.payload.selectedAmount
+    );
+
+    let updatedItems: ICheckoutItem[];
+
+    // Skip everything if the selectedAmount is somehow not a number
+    if (isNaN(action.payload.selectedAmount)) {
+        return state;
+    }
 
     switch (action.type) {
         case ACTIONS.ADD_CART:
-            const targetItem = retrieveInformation(
-                action.payload.id,
-                action.payload.selectedAmount
+            const existingItemIndex = state.items.findIndex(
+                (item) => item.id === action.payload.id
             );
-            const updatedItems = state.items.concat(targetItem);
+
+            console.log(existingItemIndex);
+
+            // If there's a match in the array, find the target and update the selectedAmount
+            if (existingItemIndex !== -1) {
+                updatedItems = state.items.map((item) => {
+                    if (item.id === action.payload.id) {
+                        return {
+                            ...item,
+                            selectedAmount:
+                                item.selectedAmount +
+                                action.payload.selectedAmount,
+                        };
+                    }
+                    return item;
+                });
+            } else {
+                updatedItems = [...state.items, targetItem];
+            }
+
+            const oldSelectedAmount =
+                existingItemIndex !== -1
+                    ? state.items[existingItemIndex].selectedAmount
+                    : 0;
+            const newSelectedAmount =
+                oldSelectedAmount + action.payload.selectedAmount;
+            const itemPrice =
+                typeof targetItem.price === 'number' && targetItem.price > 0
+                    ? targetItem.price
+                    : 0;
+
+            // Calculates totalAmount based on how many items are added during the process
             const updatedTotalAmount =
                 state.totalAmount +
-                (typeof targetItem.price === 'number' && targetItem.price > 0
-                    ? targetItem.price
-                    : 0) *
-                    action.payload.selectedAmount;
+                (newSelectedAmount - oldSelectedAmount) * itemPrice;
+
+            console.log(updatedItems);
 
             return { items: updatedItems, totalAmount: updatedTotalAmount };
 
         case ACTIONS.DELETE_CART:
-            return initialState;
+            const filteredItems = state.items.filter(
+                (item) => item.id !== action.payload.id
+            );
+
+            const updatedTotalAmountAfterDeletion =
+                state.totalAmount -
+                (typeof targetItem.price === 'number' && targetItem.price > 0
+                    ? targetItem.price
+                    : 0) *
+                    targetItem.selectedAmount;
+
+            return {
+                items: filteredItems,
+                totalAmount: updatedTotalAmountAfterDeletion,
+            };
         default:
-            return initialState;
+            return state;
     }
 };

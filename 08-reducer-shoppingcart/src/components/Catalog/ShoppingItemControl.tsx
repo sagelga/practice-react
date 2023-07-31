@@ -5,6 +5,7 @@ interface ShoppingItemControlProps {
     itemMin: number;
     itemMax: number;
     itemSubmit: (value: number) => void;
+    className?: string;
 }
 
 const ShoppingItemControl = (props: ShoppingItemControlProps) => {
@@ -23,37 +24,32 @@ const ShoppingItemControl = (props: ShoppingItemControlProps) => {
         setSelectedAmount((selectedAmount) => selectedAmount - 1);
     };
 
-    // TODO: is it possible to update the value in input if user typed in invalid values
+    const validateAndSubmitSelectedAmount = (amount: number | string) => {
+        if (typeof amount === 'string') {
+            amount = parseInt(amount);
+        }
+
+        if (isNaN(amount)) {
+            setSelectedAmount(itemMin);
+        } else if (amount >= itemMax) {
+            setSelectedAmount(itemMax);
+        } else if (amount < itemMin) {
+            setSelectedAmount(itemMin);
+        } else {
+            setSelectedAmount(amount);
+        }
+    };
+
     const onInputChangeHandler = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        let updatedValue = parseInt(event.target.value);
-        // console.log(updatedValue);
-        if (updatedValue > itemMax) {
-            setSelectedAmount(itemMax);
-        } else if (updatedValue < itemMin) {
-            setSelectedAmount(itemMin);
-        } else {
-            setSelectedAmount(updatedValue);
-        }
+        validateAndSubmitSelectedAmount(event.target.value);
     };
 
     // When user clicks the Add button on this item, it will add item to CheckoutContext
     // and also refresh item selected
     // TODO: make sure that when user click the button, the value cannot exceed the maximum or lower than the minimum
     const itemSubmitHandler = () => {
-        // let updatedValue = parseInt(selectedAmount);
-        let updatedValue = selectedAmount;
-
-        if (updatedValue > itemMax) {
-            setSelectedAmount(itemMax);
-        } else if (updatedValue < itemMin) {
-            setSelectedAmount(itemMin);
-        } else {
-            // If updatedValue is in acceptable range
-            setSelectedAmount(updatedValue);
-        }
-
         props.itemSubmit(selectedAmount);
 
         // then reset the value to itemMin
@@ -61,7 +57,7 @@ const ShoppingItemControl = (props: ShoppingItemControlProps) => {
     };
 
     return (
-        <>
+        <div className={props.className}>
             <div>
                 <button
                     className={classes.quantity}
@@ -81,6 +77,7 @@ const ShoppingItemControl = (props: ShoppingItemControlProps) => {
                 <button
                     className={classes.quantity}
                     onClick={increaseButtonClickHandler}
+                    disabled={selectedAmount >= itemMax}
                 >
                     +
                 </button>
@@ -89,13 +86,13 @@ const ShoppingItemControl = (props: ShoppingItemControlProps) => {
                 <button
                     onClick={itemSubmitHandler}
                     disabled={
-                        selectedAmount > itemMax || selectedAmount < itemMin
+                        selectedAmount >= itemMax || selectedAmount < itemMin
                     }
                 >
                     Add
                 </button>
             </div>
-        </>
+        </div>
     );
 };
 

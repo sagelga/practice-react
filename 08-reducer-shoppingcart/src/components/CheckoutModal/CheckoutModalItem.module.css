@@ -1,0 +1,41 @@
+/* styles.css */
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.info {
+    align-items: flex-start;
+}
+
+.info h3 {
+    margin: 0;
+}
+
+.info p {
+    margin: 0;
+    color: #999;
+}
+
+.info p:last-child {
+    font-weight: bold;
+}
+
+.selected-amount {
+    flex: 1;
+    text-align: center;
+}
+
+.checkout-control {
+    flex: 1;
+    text-align: right;
+}
+
+.subtotal {
+    flex: 1;
+    text-align: right;
+}

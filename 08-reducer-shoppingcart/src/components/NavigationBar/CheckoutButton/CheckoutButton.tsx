@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import classes from './CheckoutButton.module.css';
-import CartContext from '../../../context/checkoutItemContext';
+import CheckoutItemContext from '../../../context/checkoutItemContext';
 import { ICheckoutItem } from '../../../interface/ICheckoutItem';
 
 interface ICheckoutButtonProps {
@@ -8,7 +8,7 @@ interface ICheckoutButtonProps {
 }
 
 const CheckoutButton = (props: ICheckoutButtonProps) => {
-    const cartCtx = useContext(CartContext);
+    const cartCtx = useContext(CheckoutItemContext);
     const totalItem = cartCtx.items.reduce((curNumber, item: ICheckoutItem) => {
         return curNumber + item.selectedAmount;
     }, 0);

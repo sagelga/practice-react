@@ -1,0 +1,13 @@
+/* Main container for the shopping item card */
+.cart-item {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Container for the shopping item control */
+.shopping-item-control {
+    margin-top: auto; /* Push the shopping item control to the bottom */
+}

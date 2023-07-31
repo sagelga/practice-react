@@ -1,53 +1,65 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CheckoutItemContext from '../../context/checkoutItemContext';
+import CheckoutModalItem from './CheckoutModalItem';
+import CheckoutItemSummary from './CheckoutItemSummary';
+import { ICheckoutItem } from '../../interface/ICheckoutItem';
+import classes from './CheckoutModalContent.module.css';
 
 const CheckoutModalContent = () => {
+    const cartCtx = useContext(CheckoutItemContext);
+
+    const onRemoveHandler = (item: ICheckoutItem) => {
+        // const selectedItem: ICheckoutItem = {
+        //     id: id,
+        //     name: name,
+        //     description: description,
+        //     stockAmount: stockAmount,
+        //     price: price,
+        //     priceCurrency: priceCurrency,
+        //     img: {
+        //         url: url,
+        //         alt: alt,
+        //     },
+        //     selectedAmount: amount,
+        // };
+        cartCtx.removeItem(item);
+    };
+    const onAddHandler = (item: ICheckoutItem) => {
+        console.log('onAddHandler');
+        const selectedItem: ICheckoutItem = {
+            id: item.id,
+            name: item.name,
+            description: item.description,
+            stockAmount: item.stockAmount,
+            price: item.price,
+            priceCurrency: item.priceCurrency,
+            selectedAmount: 1,
+        };
+        cartCtx.addItem(selectedItem);
+    };
+
     return (
         <>
-            <h1>Checkout</h1>
-            <div className='cart-items'>
-                <div className='item'>
-                    <div>
-                        <h3>Item Title 1</h3>
-                        <p>Description of Item 1</p>
-                        <p>Price per Item: $10.00</p>
-                    </div>
-                    <div>
-                        <button className='remove-item'>Remove</button>
-                        <button className='add-item'>Add</button>
-                        <textarea
-                            className='item-amount'
-                            rows={1}
-                            cols={4}
-                            placeholder='Amount'
-                        ></textarea>
-                    </div>
-                </div>
-                <div className='item'>
-                    <div>
-                        <h3>Item Title 2</h3>
-                        <p>Description of Item 2</p>
-                        <p>Price per Item: $15.00</p>
-                    </div>
-                    <div>
-                        <button className='remove-item'>Remove</button>
-                        <button className='add-item'>Add</button>
-                        <textarea
-                            className='item-amount'
-                            rows={1}
-                            cols={4}
-                            placeholder='Amount'
-                        ></textarea>
-                    </div>
-                </div>
+            <div className={classes['cart-items']}>
+                {cartCtx.items.map((item: ICheckoutItem) => {
+                    return (
+                        <div className='item'>
+                            <CheckoutModalItem
+                                key={item.id}
+                                item={item}
+                                onRemove={onRemoveHandler}
+                                onAdd={onAddHandler}
+                            />
+                        </div>
+                    );
+                })}
             </div>
+            <CheckoutItemSummary
+                totalAmount={cartCtx.totalAmount}
+                priceCurrency={'THB'}
+            />
 
-            <div className='grand-total'>
-                <p>
-                    Total: $<span id='total-amount'>0.00</span>
-                </p>
-            </div>
-
-            <button className='checkout-btn'>Checkout</button>
+            <button>Checkout</button>
         </>
     );
 };

@@ -7,7 +7,7 @@ import { DUMMY_INVENTORY } from './data/dummy-data';
 
 function App() {
     const [inventoryData, setInventoryData] = useState(DUMMY_INVENTORY);
-    const [cartModalShown, setCartModalShown] = useState(true);
+    const [cartModalShown, setCartModalShown] = useState(false);
 
     const openModalButtonHandler = () => {
         setCartModalShown(true);

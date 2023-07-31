@@ -16,6 +16,6 @@ const dummyGenerator = () => {
     };
 };
 
-export const DUMMY_INVENTORY = faker.helpers.multiple(
-    dummyGenerator,
-    { count: 12 });
+export const DUMMY_INVENTORY = faker.helpers.multiple(dummyGenerator, {
+    count: 18,
+});
